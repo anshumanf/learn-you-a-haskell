@@ -21,7 +21,11 @@ numUniques = length . nub
 -- Representing a polynomial 1 + 2x + 3x^2 as [1,2,3]
 addPolynomials xs ys = map sum $ transpose [xs, ys]
 
+{-# ANN any' "HLint: ignore Use any" #-}
+
 any' pred xs = or $ map pred xs
+
+{-# ANN all' "HLint: ignore Use all" #-}
 
 all' pred xs = and $ map pred xs
 

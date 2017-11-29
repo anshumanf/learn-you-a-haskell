@@ -33,11 +33,15 @@ cseq n
 -- main = print (length (filter isLong (map cseq [1 .. 100])))
 --   where isLong l = length l > 15
 -- main = print (length (filter (\l -> length l > 15) (map cseq [1 .. 100])))
+{-# ANN sum' "HLint: ignore Use sum" #-}
+
 sum'
   :: Num t
   => [t] -> t
 -- sum' = foldl (+) 0
 sum' = foldr (+) 0
+
+{-# ANN fr "HLint: ignore Use foldr" #-}
 
 fr f acc [] = acc
 fr f acc (x:xs) = x `f` fr f acc xs
@@ -52,6 +56,8 @@ fl' f acc [] = acc
 fl' f acc (x:xs) =
   let acc' = acc `f` x
   in seq acc' $ fl' f acc' xs
+
+{-# ANN mp "HLint: ignore Use map" #-}
 
 -- mp f [] = []
 -- mp f (x:xs) = f x : mp f xs
