@@ -6,5 +6,6 @@ infixr 5 :-:
 
 data MyList a
   = Empty
-  | (:-:) a (MyList a)
+  | (:-:) a
+        (MyList a)
   deriving (Show, Read, Eq, Ord)
