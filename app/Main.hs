@@ -7,6 +7,7 @@ import Lib
 import Lockers
 import Shapes
 import Vector
+import MyList
 
 import Data.Char
 import Data.Function (on)
