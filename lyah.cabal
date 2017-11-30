@@ -1,8 +1,8 @@
-name:                htest
+name:                lyah
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/anshumanf/htest#readme
+homepage:            https://github.com/anshumanf/learn-you-a-haskell#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Anshuman Fotedar
@@ -19,24 +19,24 @@ library
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
-executable htest-exe
+executable lyah-exe
   hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
-                     , htest
+                     , lyah
                      , containers
   default-language:    Haskell2010
 
-test-suite htest-test
+test-suite lyah-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
   build-depends:       base
-                     , htest
+                     , lyah
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
 source-repository head
   type:     git
-  location: https://github.com/anshumanf/htest
+  location: https://github.com/anshumanf/lyah

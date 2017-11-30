@@ -4,6 +4,9 @@ import qualified Geometry.Cube as Cube
 import qualified Geometry.Cuboid as Cuboid
 import qualified Geometry.Sphere as Sphere
 import Lib
+import Lockers
+import Shapes
+import Vector
 
 import Data.Char
 import Data.Function (on)
@@ -203,4 +206,66 @@ phoneBookToMap
   => [(k, String)] -> Map.Map k String
 phoneBookToMap = Map.fromListWith (\v1 v2 -> v1 ++ ", " ++ v2)
 
-foo = map (+ 1) $ map (subtract 1) $ [1, 2]
+data Car = Car
+  { company :: String
+  , model :: String
+  , year :: Int
+  } deriving (Show)
+
+-- :t Just "Haha"
+-- :t Just 84
+-- Just 10 :: Maybe Double
+-- :t Nothing
+-- :t []
+-- Vector 3 5 8 `vplus` Vector 9 2 8
+data Person = Person
+  { firstName :: String
+  , lastName :: String
+  , age :: Int
+  } deriving (Eq, Show, Read)
+
+axl = Person "Axl" "Rose" 69
+
+slash = Person "Slash" "Dot" 89
+
+gnr = [axl, slash]
+
+-- "Axl is " ++ show axl
+-- axl `elem` gnr
+-- read "Person {firstName = \"Axl\", lastName = \"Rose\", age = 69}"
+-- read "Person {firstName = \"Axl\", lastName = \"Rose\", age = 69}" :: Person
+-- read "Person {firstName = \"Axl\", lastName = \"Rose\", age = 69}" == axl
+data Day
+  = Monday
+  | Tuesday
+  | Wednesday
+  | Thursday
+  | Friday
+  | Saturday
+  | Sunday
+  deriving (Eq, Ord, Show, Read, Bounded, Enum) -- read "Saturday" :: Day
+
+-- Saturday == Sunday
+-- Saturday > Friday
+-- Monday `compare` Wednesday
+-- minBound :: Day
+-- :t minBound
+-- succ Monday
+-- :t succ
+type PhoneNumber = String
+
+type Name = String
+
+type AssocList k v = [(k, v)]
+
+type PhoneBook = AssocList Name PhoneNumber
+
+inPhoneBook :: Name -> PhoneNumber -> PhoneBook -> Bool
+inPhoneBook name pnumber pbook = (name, pnumber) `elem` pbook
+
+type IntMap = Map.Map Int
+
+-- :i Either
+lockerMap = fromList [(1, (Free, "Axl")), (2, (Taken, "Slash"))]-- lockerLookup 1 lockerMap
+-- lockerLookup 2 lockerMap
+-- lockerLookup 3 lockerMap
