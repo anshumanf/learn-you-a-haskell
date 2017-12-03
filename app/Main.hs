@@ -1,13 +1,17 @@
 module Main where
 
+import Functor'
 import qualified Geometry.Cube as Cube
 import qualified Geometry.Cuboid as Cuboid
 import qualified Geometry.Sphere as Sphere
 import Lib
 import Lockers
-import Shapes
-import Vector
 import MyList
+import Shapes
+import TrafficLight
+import Tree
+import Vector
+import YesNo
 
 import Data.Char
 import Data.Function (on)
@@ -17,9 +21,7 @@ import qualified Data.Map as Map
 main :: IO ()
 main = someFunc
 
-qs
-  :: Ord a
-  => [a] -> [a]
+qs :: Ord a => [a] -> [a]
 qs [] = []
 qs (x:xs) = qs [y | y <- xs, y <= x] ++ [x] ++ qs [y | y <- xs, y > x]
 
@@ -50,9 +52,7 @@ cseq n
 -- main = print (length (filter (\l -> length l > 15) (map cseq [1 .. 100])))
 {-# ANN sum' "HLint: ignore Use sum" #-}
 
-sum'
-  :: Num t
-  => [t] -> t
+sum' :: Num t => [t] -> t
 -- sum' = foldl (+) 0
 sum' = foldr (+) 0
 
@@ -78,9 +78,7 @@ mp f = foldr (\x acc -> f x : acc) []
 
 -- mx [] = error "empty list"
 -- mx (x:xs) = if x > mx xs then x else mx xs
-mx
-  :: (Ord t)
-  => [t] -> t
+mx :: (Ord t) => [t] -> t
 mx =
   foldr1
     (\x acc ->
@@ -114,9 +112,7 @@ smallerThan10k = takeW (< 10 ^ 4)
 
 oddSquareSum = sum . smallerThan10k . sumOddSquares
 
-numUniques
-  :: Eq a
-  => [a] -> Int
+numUniques :: Eq a => [a] -> Int
 numUniques = length . nub
 
 -- Representing a polynomial 1 + 2x + 3x^2 as [1,2,3]
@@ -151,9 +147,7 @@ isInfixOf' needle haystack =
 values =
   [-4.3, -2.4, -1.2, 0.4, 2.3, 5.9, 10.5, 29.1, 5.3, -2.4, -14.5, 2.9, 2.3]
 
-groupBySign
-  :: (Num a, Ord a)
-  => [a] -> [[a]]
+groupBySign :: (Num a, Ord a) => [a] -> [[a]]
 -- groupBySign = groupBy (\ x y -> (x>0) == (y>0))
 groupBySign = groupBy ((==) `on` (> 0))
 
@@ -184,9 +178,7 @@ getValueByKey key =
          else acc)
     Nothing
 
-fromList
-  :: Ord k
-  => [(k, v)] -> Map.Map k v
+fromList :: Ord k => [(k, v)] -> Map.Map k v
 fromList = foldr (\(k, v) acc -> Map.insert k v acc) Map.empty
 
 dupPhoneBook =
@@ -202,9 +194,7 @@ dupPhoneBook =
   , ("penny", "555-2111")
   ]
 
-phoneBookToMap
-  :: Ord k
-  => [(k, String)] -> Map.Map k String
+phoneBookToMap :: Ord k => [(k, String)] -> Map.Map k String
 phoneBookToMap = Map.fromListWith (\v1 v2 -> v1 ++ ", " ++ v2)
 
 data Car = Car
@@ -267,6 +257,6 @@ inPhoneBook name pnumber pbook = (name, pnumber) `elem` pbook
 type IntMap = Map.Map Int
 
 -- :i Either
-lockerMap = fromList [(1, (Free, "Axl")), (2, (Taken, "Slash"))]-- lockerLookup 1 lockerMap
+lockerMap = fromList [(1, (Free, "Axl")), (2, (Taken, "Slash"))] -- lockerLookup 1 lockerMap
 -- lockerLookup 2 lockerMap
 -- lockerLookup 3 lockerMap

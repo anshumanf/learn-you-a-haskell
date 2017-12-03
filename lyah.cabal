@@ -23,6 +23,10 @@ library
                      , MyList
                      , Shapes
                      , Vector
+                     , Tree
+                     , TrafficLight
+                     , YesNo
+                     , Functor'
   build-depends:       base >= 4.7 && < 5
                     , containers
   default-language:    Haskell2010
